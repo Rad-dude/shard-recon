@@ -131,11 +131,15 @@ def execute(): #pylint: disable=unused-variable
             raise MRtrixError('Input image does not contain valid phase encoding scheme')
 
     # Generate a brain mask if required, or check the mask if provided
+    path_2_KULNIs = os.path.dirname(__file__)
+    temp = os.path.join(path_2_KULNIs, '/../../KUL_Neuroimaging_Tools/atlasses', 'Temp_4_KUL_dwiprep', 'UKBB_fMRI_mod.nii.gz')
+    tempm = os.path.join(path_2_KULNIs, '/../../KUL_Neuroimaging_Tools/atlasses', 'Temp_4_KUL_dwiprep', 'UKBB_fMRI_mod_brain_mask.nii.gz')
     if app.ARGS.mask:
         if not image.match(header, 'mask.mif', up_to_dim=3):
             raise MRtrixError('Provided mask image does not match input DWI')
     else:
-        run.command('dwi2mask in.mif mask.mif')
+        # run.command('dwi2mask in.mif mask.mif')
+        run.command('dwi2mask b02template -nocleanup b02template -software antsfull -template ' + temp + ' ' + tempm + ' in.mif mask.mif')
 
     # Image dimensions
     dims = list(map(int, header.size()))

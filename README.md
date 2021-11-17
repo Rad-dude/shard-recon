@@ -29,4 +29,7 @@ to the `PATH`.
 
 Contact daan.christiaens@kcl.ac.uk
 
-
+### Changes by AR:
+- This branch contains the built version of the code on Linux Mint 20.1, built against MRTrix3 v. 3.0.2-78-g430465d6
+- dwimotioncorrect is updated to use MRTrix3 v 3.0.3-296-g8a71cd60, specifically dwi2mask b02template with the UKBB_fMRI modified template included with KUL_NIS (KUL Neuroimaging tools)
+- This version is not yet tested
